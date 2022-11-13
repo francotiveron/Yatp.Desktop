@@ -23,7 +23,7 @@ let update msg m =
     //| OpenChart product -> { m with Chart_ = Some {Product = product} }
     | OpenChart product -> 
         Repo.addProduct product
-        { m with Charts = m.Charts.Add(product, {Product = product}) }
+        { m with Charts = m.Charts.Add(product, {Product = product; N = 0}) }
     | ChartMsg (Chart.NewData product) -> Chart.update (Chart.NewData product) m.Charts[product]; m
 
 let bindings (chartBuilder: unit -> #Window) () : Binding<Model, Msg> list = [
